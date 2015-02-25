@@ -4,9 +4,9 @@
 
 bg = new BackgroundLayer backgroundColor:'#7DB6E6'
 
-container = new Layer width:400	, height:640, backgroundColor:'',shadowY:0, shadowBlur:0,  borderRadius:"50%",shadowColor:'rgba(0,0,0,0.1)'
+container = new Layer width:640	, height:800, backgroundColor:'',shadowY:0, shadowBlur:0,  borderRadius:"50%",shadowColor:'rgba(0,0,0,0.1)'
 
-imageLayer = new Layer width:600, height:480, image:"images/a8264df3c3f5091bb6cbc96ca7ecf183.jpg"
+imageLayer = new Layer width:640, height:480, image:"images/a8264df3c3f5091bb6cbc96ca7ecf183.jpg"
 	
 circle = new Layer 
 	width:200, height:200, backgroundColor:'transparent'
@@ -15,7 +15,7 @@ container.addSubLayer(imageLayer)
 container.addSubLayer(circle)
 circle.center()
 circle.style =
-	borderRadius:"50%"
+	borderRadius:"200%"
 
 circle.addSubLayer(imageLayer)
 imageLayer._prefer2d = true
@@ -23,14 +23,15 @@ imageLayer.center()
 
 textlabel = new Layer x:0, y:circle.y+circle.height+60, width:260, height:180, backgroundColor:'transparent'
 
-textlabel.html = "widen your perspective about street dogs, they  deserve their owners too"
+textlabel.html = "<bold>widen your perspective on happiness.<br />it's found in all places</bold>"
 textlabel.style =
 	textAlign:'center'
-	fontFamily:'Roboto'
 	color:'#fff'
 
 container.addSubLayer(textlabel)
 textlabel.centerX()
+textlabel.style =
+fontSize:'36px'
 		
 myspring = 'cubic-bezier(0.4, 0, 0.2, 1)'
 moveup = 500
@@ -54,17 +55,17 @@ scalemask = () ->
 			borderRadius:"120%"
 		curve:myspring
 		time:0.6
+		
 	
-textarea = new Layer x:0, y: 480, width:300, height:640, backgroundColor:'transparent', opacity:0, fontSize:'14px'
-textarea.html = '<bold>we are always looking for new volunteers to pitch in a hand (or paw) and help us take care of another animal.       <br /><br />415-952-PAWS helpus@pawsforpawsperity.org</bold>'
+textarea = new Layer x:0, y: 0, width:480, height:600, backgroundColor:'transparent', opacity:0
+textarea.html = '<div class=clickable><bold>we are always looking for new volunteers to pitch in a hand (or paw) and help us take care of another animal.       <br /><br /><a href=tel:+14159527297 class=link>415-952-7297 (PAWS)</a><br />or email us at <a href='+'mailto:helpus@pawsforpawsperity.org?subject=ALL%20PAWS%20BULLETIN:%20new%20volunteer%20here'+' class=link>helpus@pawsforpawsperity.org</a></bold></div>'
 
 textarea.style = 
-	color:'#FFF'
-	fontSize:'18px'
+	color:'FFFF'
+	fontSize:'32px'
 	padding:'24px'
-	
-container.addSubLayer(textarea)
-textarea.y = 80
+
+textarea.y = 60
 
 circle.on Events.Click,->
 	scalemask()
@@ -72,8 +73,13 @@ circle.on Events.Click,->
 	textarea.animate
 		delay:0.1
 		properties:
-			y:360
+			y:500
 			opacity:1
 		curve:myspring
 
 container.center()
+
+textarea.on('click', (ev) ->
+    window.location = $('.link', @).attr('href') 
+    false
+)

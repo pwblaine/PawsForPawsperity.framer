@@ -4,7 +4,7 @@
 
 bg = new BackgroundLayer backgroundColor:'#7DB6E6'
 
-container = new Layer width:640	, height:800, backgroundColor:'',shadowY:0, shadowBlur:0,  borderRadius:"50%",shadowColor:'rgba(0,0,0,0.1)'
+container = new Layer y:0, width:640	, height:800, backgroundColor:'',shadowY:0, shadowBlur:0,  borderRadius:"50%",shadowColor:'rgba(0,0,0,0.1)'
 
 imageLayer = new Layer width:640, height:480, image:"images/a8264df3c3f5091bb6cbc96ca7ecf183.jpg"
 	
@@ -43,29 +43,29 @@ scalemask = () ->
 		properties:
 			width:moveup
 			height:moveup
-			x:Math.floor(container.width/2-moveup/2)
-			y:Math.floor(container.height/2-moveup/2)
+			x:Math.floor(container.width/2-moveup/2)-60
+			y:Math.floor(container.height/2-moveup/2)-80
 		curve:myspring
 		time:0.6
 	
 	imageLayer.animate
 		properties:
-			x:Math.floor(moveup/2-imageLayer.width/2)-180
-			y:Math.floor(moveup/2-imageLayer.height/2)-60
-			borderRadius:"120%"
+			x:Math.floor(moveup/2-imageLayer.width/2)-60
+			y:Math.floor(moveup/2-imageLayer.height/2)
+			borderRadius:"200%"
 		curve:myspring
 		time:0.6
+		
 	
-textarea = new Layer x:0, y: 0, width:480, height:600, backgroundColor:'transparent', opacity:0
-textarea.html = '<bold>we are always looking for new volunteers to pitch in a hand (or paw) and help us take care of another animal.       <br /><br />+14159527297 (PAWS)<br />or email us at helpus@pawsforpawsperity.org</bold>'
+textarea = new Layer x:0, y: 0, width:480, height:640, backgroundColor:'transparent', opacity:0
+textarea.html = '<div class=clickable><p>return to <a href="http://pawsperity.org">pawsperity.org</a><br /><br /></p><p></p><bold><p>we are always looking for new volunteers to pitch in a hand (or paw) and help us take care of another animal.       <br /><br /><a href=tel:+14159527297 class=link>415-952-7297 (PAWS)</a><br />or email us at <a href='+'mailto:helpus@pawsforpawsperity.org?subject=ALL%20PAWS%20BULLETIN:%20new%20volunteer%20here'+' class=link>helpus@pawsforpawsperity.org</a></bold></p></div>'
 
 textarea.style = 
 	color:'FFFF'
 	fontSize:'32px'
 	padding:'24px'
-	
-container.addSubLayer(textarea)
-textarea.y = 60
+
+textarea.y = 40
 
 circle.on Events.Click,->
 	scalemask()
@@ -73,8 +73,13 @@ circle.on Events.Click,->
 	textarea.animate
 		delay:0.1
 		properties:
-			y:500
+			y:455
 			opacity:1
 		curve:myspring
 
 container.center()
+
+textarea.on('click', (ev) ->
+    window.location = $('.link', @).attr('href') 
+    false
+)
