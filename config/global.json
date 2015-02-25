@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "Paws For Pawsperity": {
+            "applicationId": "Z8EnZnu3uskPevkdoINlFGBSoT0vLaeBrJypPTB2", 
+            "masterKey": "ZotlMXOCC8OOG7xZJsiV0uFkcD7onCAnDmyj7W2h"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.5"
+    }
+}
